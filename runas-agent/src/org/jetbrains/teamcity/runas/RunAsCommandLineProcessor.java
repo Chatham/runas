@@ -28,14 +28,6 @@ public class RunAsCommandLineProcessor implements BuildCommandLineProcessor {
     final String execPath = getCustomExecutableCommand(build);
     Map<String, String> props = build.getSharedConfigParameters();
 
-    /*
-    BuildProgressLogger logger = build.getBuildLogger();
-
-    for(String i : props.keySet()) {
-        logger.message("Key: " + i + " Value: " + props.get(i));
-    }
-    */
-
     final Boolean useRunas =
             (
                     ( props.containsKey("runas.username") && !props.get("runas.username").isEmpty() )
@@ -93,6 +85,7 @@ public class RunAsCommandLineProcessor implements BuildCommandLineProcessor {
       StringBuilder content = new StringBuilder();
       content.append("cd ").append(origCommandLine.getWorkingDirectory()).append("\n");
       content.append(createOriginalCommandLine(origCommandLine));
+      content.append("exit %errorlevel%");
       FileUtil.writeFile(script, content.toString());
 
       setPermissions(script, "a+x"); // script needs to be made executable for all (chmod a+x)
