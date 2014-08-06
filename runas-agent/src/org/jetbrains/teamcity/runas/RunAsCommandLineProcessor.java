@@ -85,7 +85,6 @@ public class RunAsCommandLineProcessor implements BuildCommandLineProcessor {
       StringBuilder content = new StringBuilder();
       content.append("cd ").append(origCommandLine.getWorkingDirectory()).append("\n");
       content.append(createOriginalCommandLine(origCommandLine));
-      content.append("exit %errorlevel%");
       FileUtil.writeFile(script, content.toString());
 
       setPermissions(script, "a+x"); // script needs to be made executable for all (chmod a+x)
