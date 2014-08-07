@@ -7,7 +7,7 @@
           <element id="directory" name="runas">
             <element id="directory" name="lib">
               <element id="archive" name="runas-agent.jar">
-                <element id="module-output" name="runas-agent" />
+                <element id="module-output" name="agent" />
               </element>
             </element>
           </element>
