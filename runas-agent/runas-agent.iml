@@ -7,8 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="TC-agent-openapi" level="project" />
-    <orderEntry type="library" name="Annotations" level="project" />
+    <orderEntry type="library" name="Agent-Api" level="project" />
+    <orderEntry type="library" name="Idea-OpenApi" level="project" />
+    <orderEntry type="library" name="Common-Api" level="project" />
   </component>
 </module>
 
