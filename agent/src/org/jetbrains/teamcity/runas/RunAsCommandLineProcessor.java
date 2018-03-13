@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Executable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -120,19 +121,27 @@ public class RunAsCommandLineProcessor implements BuildCommandLineProcessor {
 
   private static String createOriginalCommandLine(@NotNull final ProgramCommandLine commandLine) throws RunBuildException {
     StringBuilder sb = new StringBuilder();
-    sb.append(commandLine.getExecutablePath());
+    String executablePath = normalizeTokenForExecution(commandLine.getExecutablePath()); 
+    sb.append(executablePath);
     for (String arg: commandLine.getArguments()) {
       sb.append(" ");
-      final boolean hasSpaces = arg.indexOf(' ') != -1;
-      if (hasSpaces) {
-        sb.append("\"");
-      }
-      sb.append(arg.replace("\"", "\\\""));
-      if (hasSpaces) {
-        sb.append("\"");
-      }
+      String argument = normalizeTokenForExecution(arg);
+      sb.append(argument);
     }
     return sb.toString();
+  }
+  
+  private static String normalizeTokenForExecution(@NotNull String token) {
+	  StringBuilder sb = new StringBuilder();
+      final boolean hasSpaces = token.indexOf(' ') != -1;
+      if (hasSpaces) {
+        sb.append("\"");
+      }
+      sb.append(token.replace("\"", "\\\""));
+      if (hasSpaces) {
+        sb.append("\"");
+      }
+      return sb.toString();
   }
 
   @Nullable
