@@ -132,16 +132,16 @@ public class RunAsCommandLineProcessor implements BuildCommandLineProcessor {
   }
   
   private static String normalizeTokenForExecution(@NotNull String token) {
-	  StringBuilder sb = new StringBuilder();
-      final boolean hasSpaces = token.indexOf(' ') != -1;
-      if (hasSpaces) {
-        sb.append("\"");
-      }
-      sb.append(token.replace("\"", "\\\""));
-      if (hasSpaces) {
-        sb.append("\"");
-      }
-      return sb.toString();
+    StringBuilder sb = new StringBuilder();
+    final boolean hasSpaces = token.indexOf(' ') != -1;
+    if (hasSpaces) {
+      sb.append("\"");
+    }
+    sb.append(token.replace("\"", "\\\""));
+    if (hasSpaces) {
+      sb.append("\"");
+    }
+    return sb.toString();
   }
 
   @Nullable
